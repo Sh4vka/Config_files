@@ -1,1 +1,53 @@
-![Alt text](image/2025-05-04_19-10.png)
+Используются утилиты от suckless 
+https://suckless.org
+
+Фото:
+https://github.com/Sh4vka/Config_files/blob/main/image/2025-05-04_19-10.png
+
+Установка на Arch Linux:
+1) sudo pacman -S xorg (можно отдельно xorg-server xorg-xinit)
+2) sudo pacman -S make gcc git 
+2.5) sudo pacman -S ttf-space-mono-nerd (для шрифтов nerd)(можно и другой на ваш вкус)
+для удовства в ~/ создайте папку .config (mkdir ~/.config && cd .config)
+3) git clone https://git.suckless.org/dwm
+4) git clone https://git.suckless.org/slstatus
+5) cd dwm && cat README (у них все отлично написано)
+6) sudo make clean install (если нехватает библиотек то sudo pacman -Fy и sudo pacman -F (имя). Дальше скачиваете через pacman)
+7) vim/nano config.h и меняете Mod1Mask на Mod4Mask если хотите место Alt использовать клавишу Super
+Я использую терминал Alacritty (sudo pacman -S alacritty). Его конфиг файл (https://github.com/Sh4vka/Config_files/blob/main/alacritty.toml)
+8) Добавляете 
+static const char *alacritty[] = { "/bin/sh", "-c", "alacritty", NULL }; 
+{ MODKEY,                       XK_Return, spawn,          {.v = alacritty } },
+в config.h (следите чтоб не было конфликта в клавишах
+9) снова sudo make clean install 
+10) cd ~ && echo "exec dwm" >> ~/.xinirc 
+11) startx 
+Все. dwm готов 
+
+По аналогии slstatus:
+после make подменяете battery.c disk.c и config.h на мои 
+в battery.c добавлено состояние батареи с иконкой nerd fonts  
+в disk.c вывод в Gb а не в Gi 
+в config.h все что нужно.
+ВАЖНО:
+в .xinitrc добавить slstatus до dwm. (exec slstatus && dwm)
+
+Раскладка клавиатуры:
+(setxkbmap us,ru -option grp:win_space_toggle) и вставить в .xinitrc до exec slstatus && dwm 
+
+Для регулировки яркости:
+sudo pacman -S brightnessctl 
+управление в dwm/config.h на f4 f5
+
+Для инвертации татчпада и поддержки таппинга:
+1) sudo pacman -S xorg-xinput
+2) xinput (находим название своего татчпада и копируем его)
+3) в .xinitrc вставляем:
+touchpad="модель"
+xinput set-prop "$touchpad" "libinput Tapping Enabled" 1
+xinput set-prop "$touchpad" "libinput Natural Scrolling Enabled" 1
+
+Скриншоты:
+sudo pacman -S flameshot 
+изменяем .xinitrc на запуск через d-bus ( exec dbus-launch --exit-with-session slstatus & flameshot & dwm )
+бинды в dwm/config.h 
