@@ -57,16 +57,28 @@
                         int perc;
 			char *symbol;
 		} map[] = {
-			{ "Charging",      80,  "󰂅 " },
-                        { "Charging",      60,  "󰢞 " },
+                        { "Charging",      100, "󰂅 " },
+			{ "Charging",      90,  "󰂋 " },
+                        { "Charging",      80,  "󰂊 " },
+                        { "Charging",      70,  "󰢞 " },
+                        { "Charging",      60,  "󰂉 " },
+                        { "Charging",      50,  "󰢝 " },
                         { "Charging",      40,  "󰂈 " },
+                        { "Charging",      30,  "󰂇 " },
                         { "Charging",      20,  "󰂆 " },
+                        { "Charging",      10,  "󰢜 " },
                         { "Charging",      0,   "󰢟 " },
-                        { "Discharging",   80,  " " },
-                        { "Discharging",   60,  " " },
-                        { "Discharging",   40,  " " },
-                        { "Discharging",   20,  " " },
-                        { "Discharging",   0,   " " },
+                        { "Discharging",   100, "󰁹 " },
+                        { "Discharging",   90,  "󰂂 " },
+                        { "Discharging",   80,  "󰂁 " },
+                        { "Discharging",   70,  "󰂀 " },
+                        { "Discharging",   60,  "󰁿 " },
+                        { "Discharging",   50,  "󰁾 " },
+                        { "Discharging",   40,  "󰁽 " },
+                        { "Discharging",   30,  "󰁼 " },
+                        { "Discharging",   20,  "󰁻 " },
+                        { "Discharging",   10,  "󰁺 " },
+                        { "Discharging",   0,   "󰂎 " },
 		};
 		size_t i;
                 int perc;
